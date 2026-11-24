@@ -2,7 +2,7 @@
  "name": "Coproscopie — aide à l'identification",
  "short_name": "Coproscopie",
  "description": "Clé de détermination et fiches illustrées des éléments observés en coproscopie vétérinaire.",
- "start_url": "./index.html",
+ "start_url": "./",
  "scope": "./",
  "display": "standalone",
  "orientation": "portrait-primary",
@@ -20,12 +20,6 @@
    "src": "icon-512.png",
    "sizes": "512x512",
    "type": "image/png",
-   "purpose": "any"
-  },
-  {
-   "src": "icon.svg",
-   "sizes": "any",
-   "type": "image/svg+xml",
    "purpose": "any"
   }
  ]
