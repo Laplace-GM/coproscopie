@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Coproscopie — aide à l'identification</title>
+<meta name="description" content="Clé de détermination et fiches illustrées des éléments observés en coproscopie vétérinaire.">
+<meta name="theme-color" content="#2E6F8E">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header>
+  <div class="hrow">
+    <h1>Coproscopie<small>Aide à l'identification — BioPôle Alfort</small></h1>
+    <button class="iconbtn" id="theme" title="Basculer clair / sombre" aria-label="Basculer le thème">◐</button>
+  </div>
+  <nav role="tablist">
+    <button role="tab" id="tab-cle"  aria-selected="true"  aria-controls="vue-cle">Déterminer</button>
+    <button role="tab" id="tab-list" aria-selected="false" aria-controls="vue-list">Fiches</button>
+    <button role="tab" id="tab-pl"   aria-selected="false" aria-controls="vue-pl">Tailles</button>
+  </nav>
+</header>
+
+<main>
+  <!-- ─────────── DÉTERMINER ─────────── -->
+  <section id="vue-cle" role="tabpanel" aria-labelledby="tab-cle">
+    <div class="countbar">
+      <b id="cnt">104</b><span id="cntlbl">éléments compatibles</span>
+      <button id="reset">Tout effacer</button>
+    </div>
+
+    <div class="panel">
+      <h2>Hôte</h2>
+      <div class="chips" id="f-hote"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Longueur mesurée au micromètre</h2>
+      <div class="sizebox">
+        <input type="range" id="size" min="3" max="300" step="1" value="60" aria-label="Longueur mesurée en micromètres">
+        <span class="sizeval" id="sizeval">—</span>
+      </div>
+      <div class="chips" style="margin-top:9px">
+        <button class="chip" id="size-on" aria-pressed="false">Utiliser la mesure</button>
+        <button class="chip" id="tol" aria-pressed="false">Tolérance ±15 %</button>
+      </div>
+      <p class="hint">Un élément est retenu si la mesure tombe dans son intervalle publié. La tolérance couvre l'imprécision du micromètre et la variabilité individuelle.</p>
+    </div>
+
+    <div class="panel"><h2>Forme générale</h2><div class="chips" id="f-forme"></div></div>
+    <div class="panel"><h2>Contenu interne</h2><div class="chips" id="f-contenu"></div></div>
+    <div class="panel"><h2>Coque et surface</h2><div class="chips" id="f-surface"></div></div>
+    <div class="panel"><h2>Structure remarquable</h2><div class="chips" id="f-structures"></div></div>
+    <div class="panel"><h2>Couleur</h2><div class="chips" id="f-couleur"></div></div>
+    <div class="panel"><h2>Nature de l'élément</h2><div class="chips" id="f-groupe"></div></div>
+
+    <h2 style="font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2);margin:16px 0 9px">Candidats</h2>
+    <ul class="cards" id="res"></ul>
+  </section>
+
+  <!-- ─────────── FICHES ─────────── -->
+  <section id="vue-list" role="tabpanel" aria-labelledby="tab-list" hidden>
+    <div class="panel">
+      <input class="search" id="q" type="search" placeholder="Rechercher : nom, hôte, critère…" autocomplete="off">
+      <div class="chips" id="f-groupe2" style="margin-top:9px"></div>
+    </div>
+    <ul class="cards" id="list"></ul>
+  </section>
+
+  <!-- ─────────── PLANCHE ─────────── -->
+  <section id="vue-pl" role="tabpanel" aria-labelledby="tab-pl" hidden>
+    <div class="panel">
+      <h2>Comparaison des tailles</h2>
+      <p class="hint" style="margin-top:0">Panneau a : 24 éléments de référence dessinés à la même échelle. Panneau b : intervalle de longueur de tous les éléments mesurables, en échelle logarithmique : repère ta mesure en abscisse, les candidats compatibles sont en face.</p>
+      <img class="planche" src="images/planche_tailles.png" alt="Planche de comparaison des tailles des éléments coproscopiques">
+    </div>
+  </section>
+</main>
+
+<!-- ─────────── FICHE DÉTAILLÉE ─────────── -->
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-nm">
+  <div class="sheethead">
+    <button class="iconbtn" id="close" aria-label="Fermer la fiche">←</button>
+    <div class="nm" id="sheet-nm"></div>
+  </div>
+  <div class="sheetbody" id="sheet-body"></div>
+</div>
+
+<!-- ─────────── VISIONNEUSE PLEIN ÉCRAN ─────────── -->
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Image agrandie">
+  <div class="lbbar">
+    <button class="lbbtn" id="lb-close" aria-label="Fermer">✕</button>
+    <span class="lbzoom" id="lb-zoom">100 %</span>
+    <button class="lbbtn" id="lb-minus" aria-label="Dézoomer">−</button>
+    <button class="lbbtn" id="lb-plus" aria-label="Zoomer">+</button>
+    <button class="lbbtn" id="lb-fit" aria-label="Rétablir la taille">⤢</button>
+  </div>
+  <div class="lbstage" id="lb-stage"><img id="lb-img" alt=""></div>
+  <div class="lbcap" id="lb-cap"></div>
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
