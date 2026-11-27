@@ -1,4 +1,4 @@
-const CACHE='copro-solo-v2';
+const CACHE='copro-solo-v5';
 const ASSETS=['./','index.html','manifest.webmanifest','icon-192.png','icon-512.png','icon-maskable-192.png','icon-maskable-512.png'];
 self.addEventListener('install', ev => {
   ev.waitUntil(caches.open(CACHE).then(c =>
